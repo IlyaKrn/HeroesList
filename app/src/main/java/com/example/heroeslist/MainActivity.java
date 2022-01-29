@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +14,7 @@ import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -75,12 +77,19 @@ public class MainActivity extends AppCompatActivity {
 
         fillList();
 
-        layoutManager = new GridLayoutManager(this, 3);
+        layoutManager = new GridLayoutManager(this, 2);
         adapter = new RVAdapter(heroesSearchList);
         adapter.setOnStateClick(new RVAdapter.OnStateClick() {
             @Override
             public void onStateClick(Hero hero) {
-                Toast.makeText(getApplicationContext(), "click", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("hero_index", hero.id);
+
+                for (int i = 0; i < heroesMainList.size(); i++) {
+                    intent.putExtra("name" + i, (Serializable) heroesMainList.get(i));
+                }
+                intent.putExtra("arr_size", heroesMainList.size());
+                startActivity(intent);
             }
         });
 
@@ -95,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void fillList(){
-        for (int i = 0; i < 10; i++) {
-            heroesMainList.add(new Hero("2000","200","20","" + i, "sdfds", "sdgsdg",  "text", ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+        for (int i = 0; i < 99; i++) {
+            heroesMainList.add(new Hero("2000","2010","10","name" + i, "surname", "fatherName", "ref",  "text", String.valueOf(R.drawable.def)));
         }
         heroesSearchList = heroesMainList;
     }

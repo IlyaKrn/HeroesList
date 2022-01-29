@@ -1,5 +1,7 @@
 package com.example.heroeslist;
 
+import android.annotation.SuppressLint;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> i{
 
     private ArrayList<Hero> heroes;
     private OnStateClick onStateClick;
@@ -44,7 +46,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
 
 
     @Override
-    public void onBindViewHolder(HeroViewHolder heroViewHolder, int i) {
+    public void onBindViewHolder(HeroViewHolder heroViewHolder, @SuppressLint("RecyclerView") int i) {
         heroViewHolder.bind(i);
         heroViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +90,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
             surname.setText(heroes.get(index).surname);
             ageAtEvent.setText(heroes.get(index).ageAtEvent);
             if (heroes.get(index).image != null){
-                image.setImageBitmap(heroes.get(index).image);
+                image.setImageBitmap(cv.getContext().);
             }
             Log.e("holder", "bind: " + name.getText() + " " + surname.getText() + " " + ageAtEvent.getText());
         }
