@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class Hero implements Serializable {
 
+    private static int ids = 0;
     public String id;
 
     public String birthYear;
@@ -21,14 +22,15 @@ public class Hero implements Serializable {
 
     public String dataRef;
 
-    public String image;
+    public Bitmap image;
     public String text;
 
     public Hero() {
     }
 
-    public Hero(String birthYear, String eventYear, String ageAtEvent, String name, String surname, String fatherName, String dataRef, String text, String image) {
-        id = String.valueOf(System.currentTimeMillis());
+    public Hero(String birthYear, String eventYear, String ageAtEvent, String name, String surname, String fatherName, String dataRef, String text, Bitmap image) {
+        id = String.valueOf(ids);// String.valueOf(System.currentTimeMillis() * Math.random() * Math.random() - Math.random());
+        ids++;
         this.birthYear = birthYear;
         this.eventYear = eventYear;
         this.ageAtEvent = ageAtEvent;

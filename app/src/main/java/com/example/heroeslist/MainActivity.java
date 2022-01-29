@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<Hero> heroesMainList;
-    private ArrayList<Hero> heroesSearchList;
+    public static ArrayList<Hero> heroesMainList;
+    public static ArrayList<Hero> heroesSearchList;
     private EditText search;
     private RecyclerView recyclerView;
     private RVAdapter adapter;
@@ -58,14 +58,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sort(){
-        for (Hero h : heroesMainList){
-            if (String.valueOf(h.eventYear).equals(search.getText().toString())){
+        for (Hero h : heroesMainList) {
+            if (String.valueOf(h.eventYear).equals(search.getText().toString())) {
                 heroesSearchList.add(h);
             }
         }
 
-
-
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -84,11 +83,6 @@ public class MainActivity extends AppCompatActivity {
             public void onStateClick(Hero hero) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                 intent.putExtra("hero_index", hero.id);
-
-                for (int i = 0; i < heroesMainList.size(); i++) {
-                    intent.putExtra("name" + i, (Serializable) heroesMainList.get(i));
-                }
-                intent.putExtra("arr_size", heroesMainList.size());
                 startActivity(intent);
             }
         });
@@ -105,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fillList(){
         for (int i = 0; i < 99; i++) {
-            heroesMainList.add(new Hero("2000","2010","10","name" + i, "surname", "fatherName", "ref",  "text", String.valueOf(R.drawable.def)));
+            heroesMainList.add(new Hero("2000","2010","10","name" + i, "surname", "fatherName", "ref",  "text", ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
         }
         heroesSearchList = heroesMainList;
     }

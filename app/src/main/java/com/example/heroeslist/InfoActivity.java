@@ -12,28 +12,29 @@ public class InfoActivity extends AppCompatActivity {
 
     TextView name, surname, fatherName, eventYear, dataText;
     ArrayList<Hero> heroes;
-    int currentHero;
     Hero hero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
+        initData();
     }
-    private void init(){
-        heroes = new ArrayList<>();
-        currentHero = getIntent().getIntExtra("hero_index", 0);
-        int arrSize = getIntent().getIntExtra("arr_size", 0);
-        for (int i = 0; i < arrSize; i++) {
-            heroes.add((Hero) getIntent().getSerializableExtra("name" + i));
-        }
+
+    private void initLayout(){
+
+
+    }
+    private void initData(){
+        heroes = MainActivity.heroesMainList;
+        String id = getIntent().getStringExtra("hero_index");
         for (Hero h : heroes){
-            if (h.id.equals(currentHero)){
+            Log.i("ID", "ID: " + h.id);
+            if (h.id.equals(id)){
                 hero = h;
             }
         }
         Log.e("INFO", "N:" + hero.name + " S:" + hero.surname + " F:" + hero.fatherName);
-
     }
 
 }

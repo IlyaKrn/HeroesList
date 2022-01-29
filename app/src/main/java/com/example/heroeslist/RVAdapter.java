@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> i{
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
 
     private ArrayList<Hero> heroes;
     private OnStateClick onStateClick;
@@ -90,7 +90,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> i{
             surname.setText(heroes.get(index).surname);
             ageAtEvent.setText(heroes.get(index).ageAtEvent);
             if (heroes.get(index).image != null){
-                image.setImageBitmap(cv.getContext().);
+                image.setImageBitmap(heroes.get(index).image);
             }
             Log.e("holder", "bind: " + name.getText() + " " + surname.getText() + " " + ageAtEvent.getText());
         }
