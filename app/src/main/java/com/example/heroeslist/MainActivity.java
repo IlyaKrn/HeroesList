@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         init();
 
-        search.removeTextChangedListener(new TextWatcher() {
+        search.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                Log.e("ET", "TEXT CHANGE");
                 sort();
             }
         });
@@ -57,24 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void sort(){
-        for (Hero h : heroesMainList) {
-            if (String.valueOf(h.eventYear).equals(search.getText().toString())) {
-                heroesSearchList.add(h);
-            }
-        }
-
-        adapter.notifyDataSetChanged();
-
-    }
 
     private void init(){
         heroesMainList = new ArrayList<>();
         heroesSearchList = new ArrayList<>();
         recyclerView = findViewById(R.id.rv);
         search = findViewById(R.id.et_search);
-
-        fillList();
 
         layoutManager = new GridLayoutManager(this, 2);
         adapter = new RVAdapter(heroesSearchList);
@@ -90,18 +80,27 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
-
-
-
-
+        fillList();
     }
 
+    private void sort(){
+        if (heroesSearchList.size() > 0) heroesSearchList.clear();
+        for (Hero h : heroesMainList){
+            if (search.getText().toString().equals(h.ageAtEvent)){
+                heroesSearchList.add(h);
+            }
+            else if (search.getText().toString().equals("") || search.getText().toString() == null){
+                heroesSearchList.addAll(heroesMainList);
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }
 
     private void fillList(){
         for (int i = 0; i < 99; i++) {
             heroesMainList.add(new Hero("2000","2010","10","name" + i, "surname", "fatherName", "ref",  "text", ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
         }
-        heroesSearchList = heroesMainList;
+        heroesSearchList.addAll(heroesMainList);
     }
 
 
