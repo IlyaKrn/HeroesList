@@ -88,7 +88,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
         public void bind(int index){
             name.setText(heroes.get(index).name);
             surname.setText(heroes.get(index).surname);
-            ageAtEvent.setText(heroes.get(index).ageAtEvent);
+            ageAtEvent.setText(heroes.get(index).ageAtEvent + " лет");
             if (heroes.get(index).image != null){
                 image.setImageBitmap(heroes.get(index).image);
             }

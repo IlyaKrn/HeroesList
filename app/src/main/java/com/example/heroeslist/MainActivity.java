@@ -52,11 +52,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
 
@@ -97,9 +92,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fillList(){
-        for (int i = 0; i < 99; i++) {
-            heroesMainList.add(new Hero("2000","2010","10","name" + i, "surname", "fatherName", "ref",  "text", ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
-        }
+        heroesMainList.add(new Hero(getString(R.string.birth_year_1), getString(R.string.event_year_1), getString(R.string.age_at_event_1), getString(R.string.name_1), getString(R.string.surname_1), getString(R.string.father_name_1), getString(R.string.data_ref_1), getString(R.string.text_1), ((BitmapDrawable) getDrawable(R.drawable.img_1)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_2), getString(R.string.event_year_2), getString(R.string.age_at_event_2), getString(R.string.name_2), getString(R.string.surname_2), getString(R.string.father_name_2), getString(R.string.data_ref_2), getString(R.string.text_2), ((BitmapDrawable) getDrawable(R.drawable.img_2)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_3), getString(R.string.event_year_3), getString(R.string.age_at_event_3), getString(R.string.name_3), getString(R.string.surname_3), getString(R.string.father_name_3), getString(R.string.data_ref_3), getString(R.string.text_3), ((BitmapDrawable) getDrawable(R.drawable.img_3)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_4), getString(R.string.event_year_4), getString(R.string.age_at_event_4), getString(R.string.name_4), getString(R.string.surname_4), getString(R.string.father_name_4), getString(R.string.data_ref_4), getString(R.string.text_4), ((BitmapDrawable) getDrawable(R.drawable.img_4)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_5), getString(R.string.event_year_5), getString(R.string.age_at_event_5), getString(R.string.name_5), getString(R.string.surname_5), getString(R.string.father_name_5), getString(R.string.data_ref_5), getString(R.string.text_5), ((BitmapDrawable) getDrawable(R.drawable.img_5)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_6), getString(R.string.event_year_6), getString(R.string.age_at_event_6), getString(R.string.name_6), getString(R.string.surname_6), getString(R.string.father_name_6), getString(R.string.data_ref_6), getString(R.string.text_6), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_7), getString(R.string.event_year_7), getString(R.string.age_at_event_7), getString(R.string.name_7), getString(R.string.surname_7), getString(R.string.father_name_7), getString(R.string.data_ref_7), getString(R.string.text_7), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_8), getString(R.string.event_year_8), getString(R.string.age_at_event_8), getString(R.string.name_8), getString(R.string.surname_8), getString(R.string.father_name_8), getString(R.string.data_ref_8), getString(R.string.text_8), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_9), getString(R.string.event_year_9), getString(R.string.age_at_event_9), getString(R.string.name_9), getString(R.string.surname_9), getString(R.string.father_name_9), getString(R.string.data_ref_9), getString(R.string.text_9), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+        heroesMainList.add(new Hero(getString(R.string.birth_year_10), getString(R.string.event_year_10), getString(R.string.age_at_event_10), getString(R.string.name_10), getString(R.string.surname_10), getString(R.string.father_name_10), getString(R.string.data_ref_10), getString(R.string.text_10), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
+
+
         heroesSearchList.addAll(heroesMainList);
     }
 
