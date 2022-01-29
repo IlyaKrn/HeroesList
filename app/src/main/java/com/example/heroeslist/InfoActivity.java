@@ -2,16 +2,22 @@ package com.example.heroeslist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class InfoActivity extends AppCompatActivity {
 
+    private ScrollView scrollView;
     private TextView name, surname, fatherName, eventYear, text, dataRef;
     private ImageView image;
     private ArrayList<Hero> heroes;
@@ -30,22 +36,15 @@ public class InfoActivity extends AppCompatActivity {
     private void getData(){
         heroes = MainActivity.heroesMainList;
         String id = getIntent().getStringExtra("hero_index");
-
         for (int i = 0; i < heroes.size(); i++) {
             if (heroes.get(i).id.equals(id)){
                 hero = heroes.get(i);
                 currentId = i;
             }
         }
-        Log.e("hero",
-                " n:" + hero.name +
-                " s:" + hero.surname +
-                " f:" + hero.fatherName +
-                " e:" + hero.eventYear +
-                " d:" + hero.text
-                );
     }
     private void init() {
+        scrollView = findViewById(R.id.scroll_view);
         image = findViewById(R.id.iv_image);
         name = findViewById(R.id.tv_name);
         surname = findViewById(R.id.tv_surname);
@@ -64,21 +63,18 @@ public class InfoActivity extends AppCompatActivity {
         if (hero.image != null){
             image.setImageBitmap(hero.image);
         }
-        Log.e("text",
-                " n:" + name.getText().toString() +
-                        " s:" + surname.getText().toString() +
-                        " f:" + fatherName.getText().toString() +
-                        " e:" + eventYear.getText().toString() +
-                        " d:" + text.getText().toString()
-        );
         dataRef.setText("Источник: " + hero.dataRef);
 
         dataRef.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View view) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(hero.dataRef));
+                startActivity(browserIntent);
+                dataRef.setTextColor(R.color.checked_ref);
             }
         });
+        scrollView.scrollTo(0, 0);
     }
 
     public void onCloseInfo(View view) {

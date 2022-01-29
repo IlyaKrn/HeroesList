@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tool_bar">#1976D2</color>
     <color name="button">#0D47A1</color>
+    <color name="ref">#4285f4</color>
+    <color name="checked_ref">#1a0db3</color>
 </resources>
