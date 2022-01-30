@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
@@ -98,7 +99,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.HeroViewHolder> {
             if (heroes.get(index).image != null){
                 image.setImageBitmap(heroes.get(index).image);  // обновление фотографии
             }
-            image.setMaxHeight(image.getWidth());
             Log.e("holder", "bind: " + name.getText() + " " + surname.getText() + " " + ageAtEvent.getText());
         }
     }
