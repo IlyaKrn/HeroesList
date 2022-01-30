@@ -19,6 +19,15 @@
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp">
 
+        <ImageButton
+            android:id="@+id/bt_menu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:onClick="onMenu"
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size"
+            android:background="@drawable/round_corner_button" />
+
+
         <EditText
             android:id="@+id/et_search"
             android:layout_width="wrap_content"

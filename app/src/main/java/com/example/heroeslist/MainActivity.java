@@ -12,7 +12,10 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.io.Serializable;
@@ -124,6 +127,86 @@ public class MainActivity extends AppCompatActivity {
 
         // заполнение списка для отображения всеми героями
         heroesSearchList.addAll(heroesMainList);
+    }
+
+    // открытие меню
+    public void onMenu(View view){
+        // создание объекта меню
+        PopupMenu popup = new PopupMenu(MainActivity.this, view);
+        // установка данных меню
+        popup.inflate(R.menu.menu_year);
+        // обработка нажатия нав меню
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.y2000:
+                        search.setText("2000");
+                        break;
+                    case R.id.y2001:
+                        search.setText("2001");
+                        break;
+                    case R.id.y2002:
+                        search.setText("2002");
+                        break;
+                    case R.id.y2003:
+                        search.setText("2003");
+                        break;
+                    case R.id.y2004:
+                        search.setText("2004");
+                        break;
+                    case R.id.y2005:
+                        search.setText("2005");
+                        break;
+                    case R.id.y2006:
+                        search.setText("2006");
+                        break;
+                    case R.id.y2007:
+                        search.setText("2007");
+                        break;
+                    case R.id.y2008:
+                        search.setText("2008");
+                        break;
+                    case R.id.y2009:
+                        search.setText("2009");
+                        break;
+                    case R.id.y2010:
+                        search.setText("2010");
+                        break;
+                    case R.id.y2011:
+                        search.setText("2011");
+                        break;
+                    case R.id.y2012:
+                        search.setText("2012");
+                        break;
+                    case R.id.y2013:
+                        search.setText("2013");
+                        break;
+                    case R.id.y2014:
+                        search.setText("2014");
+                        break;
+                    case R.id.y2015:
+                        search.setText("2015");
+                        break;
+                    case R.id.y2016:
+                        search.setText("2016");
+                        break;
+                    case R.id.y2017:
+                        search.setText("2017");
+                        break;
+                    case R.id.y2018:
+                        search.setText("2018");
+                        break;
+                    case R.id.y2019:
+                        search.setText("2019");
+                        break;
+
+                }
+                return false;
+            }
+        });
+        // отображение меню
+        popup.show();
     }
 
 
