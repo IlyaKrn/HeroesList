@@ -20,18 +20,19 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static ArrayList<Hero> heroesMainList;
-    public static ArrayList<Hero> heroesSearchList;
-    private EditText search;
-    private RecyclerView recyclerView;
-    private RVAdapter adapter;
-    private GridLayoutManager layoutManager;
+    public static ArrayList<Hero> heroesMainList; // список всех героев
+    public static ArrayList<Hero> heroesSearchList; // список отображаемых героев
+    private EditText search; // EditText для поиска героя по году подвига
+    private RecyclerView recyclerView; // RecyclerView для отображения списка героев
+    private RVAdapter adapter; // адаптер для RecyclerView
+    private GridLayoutManager layoutManager; // LayoutManager для RecyclerView
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // получение полей
         init();
 
         search.addTextChangedListener(new TextWatcher() {
@@ -56,42 +57,60 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void init(){
+        // инициализация списков и объектов разметки
         heroesMainList = new ArrayList<>();
         heroesSearchList = new ArrayList<>();
         recyclerView = findViewById(R.id.rv);
         search = findViewById(R.id.et_search);
-
+        // создание GridLayoutManager
         layoutManager = new GridLayoutManager(this, 2);
+        // создание адаптера
         adapter = new RVAdapter(heroesSearchList);
+        // установка лушателя нажатий на элемент списка
         adapter.setOnStateClick(new RVAdapter.OnStateClick() {
             @Override
             public void onStateClick(Hero hero) {
+                // Intent для перехода нат InfoActivity
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                // передача выбранного героя
                 intent.putExtra("hero_index", hero.id);
+                // запуск InfoActivity
                 startActivity(intent);
             }
         });
 
+        // установка адаптера и layoutManager для recyclerView
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
 
+        // заполнение списков
         fillList();
     }
-
+    // поиск героев с заданным годом подвига
     private void sort(){
+        // очистка списка для адаптера
         if (heroesSearchList.size() > 0) heroesSearchList.clear();
+        // перебор списка всех героев
         for (Hero h : heroesMainList){
-            if (search.getText().toString().equals(h.eventYear)){
-                heroesSearchList.add(h);
-            }
-            else if (search.getText().toString().equals("") || search.getText().toString() == null){
-                heroesSearchList.addAll(heroesMainList);
-            }
+            // если edittext для поиска пуст
+             if (search.getText().toString().equals("") || search.getText().toString() == null){
+                 // установка всех героев для отображения
+                 heroesSearchList.addAll(heroesMainList);
+             }
+             // если edittext для поиска не пуст
+             else if (search.getText().toString().equals(h.eventYear)){
+                 // добавление для отображения героя текущей итерации
+                 heroesSearchList.add(h);
+             }
         }
+        // обновление адаптера
         adapter.notifyDataSetChanged();
     }
 
+    // заполнение списков
     private void fillList(){
+        // добавление  новых героев в список всех героев
+        // данные берутся из strings.xml
         heroesMainList.add(new Hero(getString(R.string.birth_year_1), getString(R.string.event_year_1), getString(R.string.age_at_event_1), getString(R.string.name_1), getString(R.string.surname_1), getString(R.string.father_name_1), getString(R.string.data_ref_1), getString(R.string.text_1), ((BitmapDrawable) getDrawable(R.drawable.img_1)).getBitmap()));
         heroesMainList.add(new Hero(getString(R.string.birth_year_2), getString(R.string.event_year_2), getString(R.string.age_at_event_2), getString(R.string.name_2), getString(R.string.surname_2), getString(R.string.father_name_2), getString(R.string.data_ref_2), getString(R.string.text_2), ((BitmapDrawable) getDrawable(R.drawable.img_2)).getBitmap()));
         heroesMainList.add(new Hero(getString(R.string.birth_year_3), getString(R.string.event_year_3), getString(R.string.age_at_event_3), getString(R.string.name_3), getString(R.string.surname_3), getString(R.string.father_name_3), getString(R.string.data_ref_3), getString(R.string.text_3), ((BitmapDrawable) getDrawable(R.drawable.img_3)).getBitmap()));
@@ -103,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     //    heroesMainList.add(new Hero(getString(R.string.birth_year_9), getString(R.string.event_year_9), getString(R.string.age_at_event_9), getString(R.string.name_9), getString(R.string.surname_9), getString(R.string.father_name_9), getString(R.string.data_ref_9), getString(R.string.text_9), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
     //    heroesMainList.add(new Hero(getString(R.string.birth_year_10), getString(R.string.event_year_10), getString(R.string.age_at_event_10), getString(R.string.name_10), getString(R.string.surname_10), getString(R.string.father_name_10), getString(R.string.data_ref_10), getString(R.string.text_10), ((BitmapDrawable) getDrawable(R.drawable.def)).getBitmap()));
 
-
+        // заполнение списка для отображения всеми героями
         heroesSearchList.addAll(heroesMainList);
     }
 
